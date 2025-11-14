@@ -1,0 +1,122 @@
+[
+  {
+    "id": "1",
+    "title": "Complete project proposal",
+    "description": "Finalize the quarterly project proposal with budget estimates and timeline. Include stakeholder feedback and risk assessment.",
+    "priority": "high",
+    "dueDate": "2024-01-15T09:00:00.000Z",
+    "listId": "1",
+    "completed": false,
+    "archived": false,
+    "createdAt": "2024-01-10T08:30:00.000Z",
+    "updatedAt": "2024-01-10T08:30:00.000Z"
+  },
+  {
+    "id": "2",
+    "title": "Review team performance reports",
+    "description": "Go through Q4 performance reports for all team members and prepare feedback sessions.",
+    "priority": "medium",
+    "dueDate": "2024-01-16T14:00:00.000Z",
+    "listId": "1",
+    "completed": false,
+    "archived": false,
+    "createdAt": "2024-01-10T09:15:00.000Z",
+    "updatedAt": "2024-01-10T09:15:00.000Z"
+  },
+  {
+    "id": "3",
+    "title": "Update resume",
+    "description": "Add recent projects and skills to resume. Update LinkedIn profile as well.",
+    "priority": "low",
+    "dueDate": "2024-01-20T12:00:00.000Z",
+    "listId": "2",
+    "completed": true,
+    "archived": false,
+    "createdAt": "2024-01-08T10:00:00.000Z",
+    "updatedAt": "2024-01-12T16:45:00.000Z"
+  },
+  {
+    "id": "4",
+    "title": "Buy groceries",
+    "description": "Weekly grocery shopping - vegetables, fruits, dairy products, and cleaning supplies.",
+    "priority": "medium",
+    "dueDate": "2024-01-14T18:00:00.000Z",
+    "listId": "3",
+    "completed": false,
+    "archived": false,
+    "createdAt": "2024-01-11T07:20:00.000Z",
+    "updatedAt": "2024-01-11T07:20:00.000Z"
+  },
+  {
+    "id": "5",
+    "title": "Plan weekend getaway",
+    "description": "Research destinations, book accommodation, and plan activities for the weekend trip.",
+    "priority": "low",
+    "dueDate": "2024-01-18T10:00:00.000Z",
+    "listId": "2",
+    "completed": false,
+    "archived": false,
+    "createdAt": "2024-01-09T15:30:00.000Z",
+    "updatedAt": "2024-01-09T15:30:00.000Z"
+  },
+  {
+    "id": "6",
+    "title": "Call dentist for appointment",
+    "description": "Schedule routine dental cleaning and checkup appointment.",
+    "priority": "high",
+    "dueDate": "2024-01-13T11:00:00.000Z",
+    "listId": "4",
+    "completed": false,
+    "archived": false,
+    "createdAt": "2024-01-10T14:15:00.000Z",
+    "updatedAt": "2024-01-10T14:15:00.000Z"
+  },
+  {
+    "id": "7",
+    "title": "Read new marketing book",
+    "description": "Finish reading 'Digital Marketing Strategies' - currently on chapter 5.",
+    "priority": "medium",
+    "dueDate": "2024-01-25T19:00:00.000Z",
+    "listId": "5",
+    "completed": false,
+    "archived": false,
+    "createdAt": "2024-01-05T13:00:00.000Z",
+    "updatedAt": "2024-01-05T13:00:00.000Z"
+  },
+  {
+    "id": "8",
+    "title": "Backup computer files",
+    "description": "Create backup of important work files and personal documents to cloud storage.",
+    "priority": "medium",
+    "dueDate": null,
+    "listId": "2",
+    "completed": false,
+    "archived": false,
+    "createdAt": "2024-01-11T16:45:00.000Z",
+    "updatedAt": "2024-01-11T16:45:00.000Z"
+  },
+  {
+    "id": "9",
+    "title": "Exercise routine",
+    "description": "30-minute cardio workout followed by strength training.",
+    "priority": "high",
+    "dueDate": "2024-01-14T07:00:00.000Z",
+    "listId": "4",
+    "completed": true,
+    "archived": false,
+    "createdAt": "2024-01-12T06:30:00.000Z",
+    "updatedAt": "2024-01-13T07:30:00.000Z"
+  },
+  {
+    "id": "10",
+    "title": "Organize home office",
+    "description": "Clean desk, organize files, and reorganize bookshelf for better productivity.",
+    "priority": "low",
+    "dueDate": "2024-01-21T15:00:00.000Z",
+    "listId": "3",
+    "completed": false,
+    "archived": false,
+    "createdAt": "2024-01-07T12:00:00.000Z",
+    "updatedAt": "2024-01-07T12:00:00.000Z"
+  }
+]
