@@ -43,7 +43,7 @@ class TaskService {
     return { ...task };
   }
 
-  async create(taskData) {
+async create(taskData) {
     await delay(300);
     
     // Generate new ID
@@ -55,6 +55,7 @@ class TaskService {
     const newTask = {
       id: newId,
       ...taskData,
+      files: taskData.files || [],
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
@@ -65,7 +66,7 @@ class TaskService {
     return { ...newTask };
   }
 
-  async update(id, updateData) {
+async update(id, updateData) {
     await delay(250);
     
     const index = this.tasks.findIndex(task => task.id === id);
@@ -77,6 +78,7 @@ class TaskService {
       ...this.tasks[index],
       ...updateData,
       id,
+      files: updateData.files !== undefined ? updateData.files : (this.tasks[index].files || []),
       updatedAt: new Date().toISOString(),
     };
     

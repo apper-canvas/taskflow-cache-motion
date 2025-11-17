@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import Input from "@/components/atoms/Input";
 import Textarea from "@/components/atoms/Textarea";
 import Select from "@/components/atoms/Select";
+import FileUploadInput from "@/components/atoms/FileUploadInput";
+import FileList from "@/components/molecules/FileList";
 import { formatFullDate } from "@/utils/dateUtils";
 import { generateTaskId } from "@/utils/taskUtils";
-
 const TaskModal = ({ 
   isOpen, 
   onClose, 
@@ -16,17 +18,18 @@ const TaskModal = ({
   lists = [],
   mode = "create" // create, edit, view
 }) => {
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     title: "",
     description: "",
     priority: "medium",
     dueDate: "",
     listId: "",
+    files: [],
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
     if (task && (mode === "edit" || mode === "view")) {
       setFormData({
         title: task.title || "",
@@ -34,6 +37,7 @@ const TaskModal = ({
         priority: task.priority || "medium",
         dueDate: task.dueDate ? formatFullDate(task.dueDate) : "",
         listId: task.listId || "",
+        files: task.files || [],
       });
     } else {
       // Create mode - reset form
@@ -43,12 +47,13 @@ const TaskModal = ({
         priority: "medium",
         dueDate: "",
         listId: lists.length > 0 ? lists[0].id : "",
+        files: [],
       });
     }
     setErrors({});
   }, [task, mode, lists, isOpen]);
 
-  const handleInputChange = (field, value) => {
+const handleInputChange = (field, value) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -61,6 +66,22 @@ const TaskModal = ({
         [field]: null
       }));
     }
+  };
+
+  const handleFilesSelected = (newFiles) => {
+    setFormData(prev => ({
+      ...prev,
+      files: [...(prev.files || []), ...newFiles]
+    }));
+    toast.success(`${newFiles.length} file(s) added to task`);
+  };
+
+  const handleRemoveFile = (fileId) => {
+    setFormData(prev => ({
+      ...prev,
+      files: (prev.files || []).filter(f => f.id !== fileId)
+    }));
+    toast.info("File removed");
   };
 
   const validateForm = () => {
@@ -82,7 +103,7 @@ const TaskModal = ({
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!validateForm()) return;
@@ -95,6 +116,7 @@ const TaskModal = ({
         title: formData.title.trim(),
         description: formData.description.trim(),
         dueDate: formData.dueDate ? new Date(formData.dueDate).toISOString() : null,
+        files: formData.files || [],
       };
       
       if (mode === "create") {
@@ -155,7 +177,7 @@ const TaskModal = ({
           transition={{ duration: 0.2 }}
           className="relative w-full max-w-lg mx-4 bg-white rounded-2xl shadow-2xl z-10 max-h-[90vh] overflow-y-auto"
         >
-          <form onSubmit={handleSubmit} className="p-6 space-y-6">
+<form onSubmit={handleSubmit} className="p-6 space-y-6">
             {/* Header */}
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold text-slate-900">
@@ -224,6 +246,21 @@ const TaskModal = ({
                 onChange={(e) => handleInputChange("dueDate", e.target.value)}
                 disabled={mode === "view"}
               />
+
+              {mode !== "view" && (
+                <FileUploadInput
+                  onFilesSelected={handleFilesSelected}
+                  disabled={mode === "view"}
+                />
+              )}
+
+              {formData.files && formData.files.length > 0 && (
+                <FileList
+                  files={formData.files}
+                  onRemoveFile={handleRemoveFile}
+                  disabled={mode === "view"}
+                />
+              )}
             </div>
 
             {/* Actions */}

@@ -91,7 +91,7 @@ const TaskCard = ({
                 </p>
               )}
               
-              <div className="flex items-center space-x-3 text-sm">
+<div className="flex items-center space-x-3 text-sm flex-wrap gap-2">
                 {list && (
                   <span className="inline-flex items-center text-slate-600">
                     <ApperIcon name={list.icon} className="w-4 h-4 mr-1" />
@@ -106,6 +106,13 @@ const TaskCard = ({
                   )}>
                     <ApperIcon name="Calendar" className="w-3 h-3 mr-1" />
                     {formatDate(task.dueDate)}
+                  </span>
+                )}
+
+                {task.files && task.files.length > 0 && (
+                  <span className="inline-flex items-center px-2 py-1 rounded-md bg-amber-50 border border-amber-200 text-xs font-medium text-amber-700">
+                    <ApperIcon name="Paperclip" className="w-3 h-3 mr-1" />
+                    {task.files.length} file{task.files.length !== 1 ? 's' : ''}
                   </span>
                 )}
               </div>
