@@ -125,9 +125,9 @@ const [isListsExpanded, setIsListsExpanded] = useState(true);
               )}
             </motion.div>
           )}
-        </div>
+</div>
       </div>
-    </div>
+    </motion.aside>
   );
 };
 
