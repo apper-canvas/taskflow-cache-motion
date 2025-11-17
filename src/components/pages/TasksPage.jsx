@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import { toast } from "react-toastify";
 import Header from "@/components/organisms/Header";
-import Sidebar from "@/components/organisms/Sidebar";
 import TaskList from "@/components/organisms/TaskList";
 import FilterBar from "@/components/molecules/FilterBar";
 import TaskModal from "@/components/organisms/TaskModal";
@@ -155,19 +154,8 @@ const TasksPage = () => {
   const taskCounts = getTaskCounts(tasks);
 
   return (
-    <div className="flex h-full">
-      {/* Desktop Sidebar */}
-      <div className="hidden lg:block">
-        <Sidebar
-          lists={lists}
-          tasks={tasks}
-          currentFilter={currentFilter}
-          onFilterChange={setCurrentFilter}
-          onCreateList={() => openListModal()}
-        />
-      </div>
-
-      {/* Main Content */}
+<div className="flex h-full">
+{/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header
           currentFilter={currentFilter}
