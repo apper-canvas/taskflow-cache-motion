@@ -45,8 +45,8 @@ const TaskList = ({
 
   return (
     <div className={`space-y-4 ${className}`}>
-      <AnimatePresence mode="popLayout">
-{tasks.map((task) => (
+<AnimatePresence mode="popLayout">
+        {tasks.map((task) => (
           <motion.div
             key={task.Id}
             initial={{ opacity: 0, y: 10 }}
@@ -60,7 +60,6 @@ const TaskList = ({
               lists={lists}
               onToggleComplete={onToggleComplete}
               onClick={() => onTaskClick(task)}
-            />
             />
           </motion.div>
         ))}
