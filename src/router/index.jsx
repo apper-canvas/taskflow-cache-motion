@@ -4,8 +4,8 @@ import Layout from "@/components/organisms/Layout";
 
 // Lazy load page components
 const TasksPage = lazy(() => import("@/components/pages/TasksPage"));
+const ProjectsPage = lazy(() => import("@/components/pages/ProjectsPage"));
 const NotFound = lazy(() => import("@/components/pages/NotFound"));
-
 // Loading component for suspense
 const SuspenseLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
@@ -26,6 +26,14 @@ const mainRoutes = [
     element: (
       <Suspense fallback={<SuspenseLoader />}>
         <TasksPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: "projects",
+    element: (
+      <Suspense fallback={<SuspenseLoader />}>
+        <ProjectsPage />
       </Suspense>
     ),
   },

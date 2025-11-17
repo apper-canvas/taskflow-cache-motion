@@ -13,9 +13,9 @@ const Sidebar = ({
   onCreateList, 
   className = "" 
 }) => {
-  const [isListsExpanded, setIsListsExpanded] = useState(true);
+const [isListsExpanded, setIsListsExpanded] = useState(true);
 
-const mainNavItems = [
+  const mainNavItems = [
     { id: "all", label: "All Tasks", icon: "List", count: tasks.filter(t => !t.archived_c).length },
     { id: "today", label: "Today", icon: "Calendar", count: tasks.filter(t => {
       if (!t.dueDate_c || t.archived_c || t.completed_c) return false;
@@ -33,31 +33,23 @@ const mainNavItems = [
   ];
 
   return (
-    <div className={`w-72 bg-white/90 backdrop-blur-sm border-r border-slate-200/60 h-full overflow-y-auto ${className}`}>
-      <div className="p-6">
-        {/* App Header */}
-        <div className="flex items-center space-x-3 mb-8">
-          <div className="w-10 h-10 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-            <ApperIcon name="CheckSquare" className="w-6 h-6 text-white" />
-          </div>
-          <div>
-            <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-              TaskFlow
-            </h1>
-            <p className="text-xs text-slate-500">Task Management</p>
-          </div>
-        </div>
-
+    <motion.aside 
+      initial={{ x: -250, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className={`w-64 bg-white border-r border-slate-200 overflow-y-auto ${className}`}
+    >
+      <div className="p-6 space-y-8">
         {/* Main Navigation */}
-        <nav className="space-y-1 mb-8">
+        <nav className="space-y-1">
           {mainNavItems.map((item) => (
             <button
               key={item.id}
               onClick={() => onFilterChange(item.id)}
-              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 text-left group ${
+              className={`w-full text-left px-3 py-2.5 rounded-lg group transition-all ${
                 currentFilter === item.id
-                  ? "bg-gradient-to-r from-primary/10 to-blue-600/5 border-l-3 border-primary shadow-sm text-primary"
-                  : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                  ? "bg-primary/10 text-primary font-medium"
+                  : "text-slate-700 hover:bg-slate-50"
               }`}
             >
               <ApperIcon 

@@ -10,5 +10,17 @@
         ]
       }
     }
+  },
+  "/projects": {
+    "allow": {
+      "when": {
+        "conditions": [
+          {
+            "label": "Projects is public",
+            "rule": "public"
+          }
+        ]
+      }
+    }
   }
 }
