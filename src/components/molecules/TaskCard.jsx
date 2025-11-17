@@ -15,16 +15,15 @@ const TaskCard = ({
 }) => {
   const [isCompleting, setIsCompleting] = useState(false);
   
-  const list = lists.find(l => l.id === task.listId);
-  const dueDateStatus = getDueDateStatus(task.dueDate);
-  
+const list = lists.find(l => l.Id === task.listId_c);
+  const dueDateStatus = getDueDateStatus(task.dueDate_c);
   const handleToggleComplete = async (e) => {
     e.stopPropagation();
     setIsCompleting(true);
     
     // Add a small delay to show the animation
     setTimeout(() => {
-      onToggleComplete(task.id);
+onToggleComplete(task.Id);
     }, 200);
   };
 
@@ -61,8 +60,8 @@ const TaskCard = ({
         "bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-sm hover:shadow-lg border border-slate-200/60",
         "transition-all duration-200 cursor-pointer group",
         "hover:border-primary/20 hover:bg-white/90",
-        list && `border-l-4 list-indicator-${list.color}`,
-        task.completed && "opacity-60",
+list && `border-l-4 list-indicator-${list.color_c}`,
+        task.completed_c && "opacity-60",
         isCompleting && "task-complete-animation",
         className
       )}
@@ -70,7 +69,7 @@ const TaskCard = ({
     >
       <div className="flex items-start space-x-4">
         <Checkbox
-          checked={task.completed}
+checked={task.completed_c}
           onChange={handleToggleComplete}
           className="mt-1"
         />
@@ -81,46 +80,46 @@ const TaskCard = ({
               <h3 className={cn(
                 "text-base font-semibold text-slate-900 mb-1 group-hover:text-primary transition-colors",
                 task.completed && "line-through text-slate-500"
-              )}>
-                {task.title}
+)}>
+                {task.title_c}
               </h3>
               
-              {task.description && (
+{task.description_c && (
                 <p className="text-sm text-slate-600 mb-3 line-clamp-2">
-                  {task.description}
+                  {task.description_c}
                 </p>
               )}
               
 <div className="flex items-center space-x-3 text-sm flex-wrap gap-2">
-                {list && (
+{list && (
                   <span className="inline-flex items-center text-slate-600">
-                    <ApperIcon name={list.icon} className="w-4 h-4 mr-1" />
-                    {list.name}
+                    <ApperIcon name={list.icon_c} className="w-4 h-4 mr-1" />
+                    {list.name_c}
                   </span>
                 )}
                 
-                {task.dueDate && (
+{task.dueDate_c && (
                   <span className={cn(
                     "inline-flex items-center px-2 py-1 rounded-md border text-xs font-medium",
                     getDueDateClassName()
                   )}>
                     <ApperIcon name="Calendar" className="w-3 h-3 mr-1" />
-                    {formatDate(task.dueDate)}
+                    {formatDate(task.dueDate_c)}
                   </span>
                 )}
 
-                {task.files && task.files.length > 0 && (
+{task.files_c && task.files_c.length > 0 && (
                   <span className="inline-flex items-center px-2 py-1 rounded-md bg-amber-50 border border-amber-200 text-xs font-medium text-amber-700">
                     <ApperIcon name="Paperclip" className="w-3 h-3 mr-1" />
-                    {task.files.length} file{task.files.length !== 1 ? 's' : ''}
+                    {task.files_c.length} file{task.files_c.length !== 1 ? 's' : ''}
                   </span>
                 )}
               </div>
             </div>
             
             <div className="flex items-center space-x-2 ml-4">
-              <Badge variant={getPriorityVariant(task.priority)} size="sm">
-                {task.priority}
+<Badge variant={getPriorityVariant(task.priority_c)} size="sm">
+                {task.priority_c}
               </Badge>
             </div>
           </div>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import ApperIcon from "@/components/ApperIcon";
-import Button from "@/components/atoms/Button";
-import ListItem from "@/components/molecules/ListItem";
 import { getTasksByList } from "@/utils/taskUtils";
+import ApperIcon from "@/components/ApperIcon";
+import ListItem from "@/components/molecules/ListItem";
+import Button from "@/components/atoms/Button";
 
 const Sidebar = ({ 
   lists = [], 
@@ -15,21 +15,21 @@ const Sidebar = ({
 }) => {
   const [isListsExpanded, setIsListsExpanded] = useState(true);
 
-  const mainNavItems = [
-    { id: "all", label: "All Tasks", icon: "List", count: tasks.filter(t => !t.archived).length },
+const mainNavItems = [
+    { id: "all", label: "All Tasks", icon: "List", count: tasks.filter(t => !t.archived_c).length },
     { id: "today", label: "Today", icon: "Calendar", count: tasks.filter(t => {
-      if (!t.dueDate || t.archived || t.completed) return false;
+      if (!t.dueDate_c || t.archived_c || t.completed_c) return false;
       const today = new Date();
-      const dueDate = new Date(t.dueDate);
+      const dueDate = new Date(t.dueDate_c);
       return dueDate.toDateString() === today.toDateString();
     }).length },
     { id: "upcoming", label: "Upcoming", icon: "Clock", count: tasks.filter(t => {
-      if (!t.dueDate || t.archived || t.completed) return false;
+      if (!t.dueDate_c || t.archived_c || t.completed_c) return false;
       const today = new Date();
-      const dueDate = new Date(t.dueDate);
+      const dueDate = new Date(t.dueDate_c);
       return dueDate > today;
     }).length },
-    { id: "archived", label: "Archive", icon: "Archive", count: tasks.filter(t => t.archived).length },
+    { id: "archived", label: "Archive", icon: "Archive", count: tasks.filter(t => t.archived_c).length },
   ];
 
   return (
@@ -104,7 +104,7 @@ const Sidebar = ({
             </Button>
           </div>
 
-          {isListsExpanded && (
+{isListsExpanded && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
@@ -112,15 +112,17 @@ const Sidebar = ({
               className="space-y-1 overflow-hidden"
             >
               {lists.map((list) => {
-                const taskCount = getTasksByList(tasks, list.id).length;
+                const taskCount = getTasksByList(tasks, list.Id).length;
+                
                 return (
-                  <ListItem
-                    key={list.id}
-                    list={list}
-                    taskCount={taskCount}
-                    isActive={currentFilter === `list-${list.id}`}
-                    onClick={() => onFilterChange(`list-${list.id}`)}
-                  />
+                  <div key={list.Id}>
+                    <ListItem
+                      list={list}
+                      taskCount={taskCount}
+                      isActive={currentFilter === `list-${list.Id}`}
+                      onClick={() => onFilterChange(`list-${list.Id}`)}
+                    />
+                  </div>
                 );
               })}
               

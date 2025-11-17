@@ -19,25 +19,25 @@ const TaskModal = ({
   mode = "create" // create, edit, view
 }) => {
 const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    priority: "medium",
-    dueDate: "",
-    listId: "",
-    files: [],
+    title_c: "",
+    description_c: "",
+    priority_c: "medium",
+    dueDate_c: "",
+    listId_c: "",
+    files_c: [],
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
 useEffect(() => {
     if (task && (mode === "edit" || mode === "view")) {
-      setFormData({
-        title: task.title || "",
-        description: task.description || "",
-        priority: task.priority || "medium",
-        dueDate: task.dueDate ? formatFullDate(task.dueDate) : "",
-        listId: task.listId || "",
-        files: task.files || [],
+setFormData({
+        title_c: task.title_c || "",
+        description_c: task.description_c || "",
+        priority_c: task.priority_c || "medium",
+        dueDate_c: task.dueDate_c ? formatFullDate(task.dueDate_c) : "",
+        listId_c: task.listId_c || "",
+        files_c: task.files_c || [],
       });
     } else {
       // Create mode - reset form
@@ -46,8 +46,8 @@ useEffect(() => {
         description: "",
         priority: "medium",
         dueDate: "",
-        listId: lists.length > 0 ? lists[0].id : "",
-        files: [],
+listId_c: lists.length > 0 ? lists[0].Id : "",
+        files_c: [],
       });
     }
     setErrors({});
@@ -112,28 +112,24 @@ const handleSubmit = async (e) => {
     
     try {
       const taskData = {
-        ...formData,
-        title: formData.title.trim(),
-        description: formData.description.trim(),
-        dueDate: formData.dueDate ? new Date(formData.dueDate).toISOString() : null,
+...formData,
+        title_c: formData.title_c.trim(),
+        description_c: formData.description_c.trim(),
+        dueDate_c: formData.dueDate_c ? new Date(formData.dueDate_c).toISOString() : null,
         files: formData.files || [],
       };
       
       if (mode === "create") {
-        const newTask = {
-          id: generateTaskId(),
+const newTask = {
           ...taskData,
-          completed: false,
-          archived: false,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
+          completed_c: false,
+          archived_c: false,
         };
         await onSave(newTask);
       } else if (mode === "edit") {
         const updatedTask = {
-          ...task,
+...task,
           ...taskData,
-          updatedAt: new Date().toISOString(),
         };
         await onSave(updatedTask);
       }
@@ -152,9 +148,9 @@ const handleSubmit = async (e) => {
     { value: "high", label: "High Priority" },
   ];
 
-  const listOptions = lists.map(list => ({
-    value: list.id,
-    label: list.name,
+const listOptions = lists.map(list => ({
+    value: list.Id,
+    label: list.name_c,
   }));
 
   if (!isOpen) return null;
@@ -201,8 +197,8 @@ const handleSubmit = async (e) => {
             <div className="space-y-4">
               <Input
                 label="Task Title"
-                value={formData.title}
-                onChange={(e) => handleInputChange("title", e.target.value)}
+value={formData.title_c}
+                onChange={(e) => handleInputChange("title_c", e.target.value)}
                 placeholder="Enter task title..."
                 error={errors.title}
                 disabled={mode === "view"}
@@ -210,10 +206,10 @@ const handleSubmit = async (e) => {
               />
 
               <Textarea
-                label="Description (Optional)"
-                value={formData.description}
+label="Description (Optional)"
+                value={formData.description_c}
                 onChange={(e) => handleInputChange("description", e.target.value)}
-                placeholder="Add more details about your task..."
+onChange={(e) => handleInputChange("description_c", e.target.value)}
                 rows={3}
                 error={errors.description}
                 disabled={mode === "view"}
@@ -223,8 +219,8 @@ const handleSubmit = async (e) => {
                 <Select
                   label="Priority"
                   options={priorityOptions}
-                  value={formData.priority}
-                  onChange={(e) => handleInputChange("priority", e.target.value)}
+value={formData.priority_c}
+                  onChange={(e) => handleInputChange("priority_c", e.target.value)}
                   disabled={mode === "view"}
                 />
 
@@ -232,8 +228,8 @@ const handleSubmit = async (e) => {
                   <Select
                     label="List"
                     options={listOptions}
-                    value={formData.listId}
-                    onChange={(e) => handleInputChange("listId", e.target.value)}
+value={formData.listId_c}
+                    onChange={(e) => handleInputChange("listId_c", e.target.value)}
                     disabled={mode === "view"}
                   />
                 )}
@@ -242,8 +238,8 @@ const handleSubmit = async (e) => {
               <Input
                 type="date"
                 label="Due Date (Optional)"
-                value={formData.dueDate}
-                onChange={(e) => handleInputChange("dueDate", e.target.value)}
+value={formData.dueDate_c}
+                onChange={(e) => handleInputChange("dueDate_c", e.target.value)}
                 disabled={mode === "view"}
               />
 
@@ -254,9 +250,9 @@ const handleSubmit = async (e) => {
                 />
               )}
 
-              {formData.files && formData.files.length > 0 && (
+{formData.files_c && formData.files_c.length > 0 && (
                 <FileList
-                  files={formData.files}
+                  files={formData.files_c}
                   onRemoveFile={handleRemoveFile}
                   disabled={mode === "view"}
                 />

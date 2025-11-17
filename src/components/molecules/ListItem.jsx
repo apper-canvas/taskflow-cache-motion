@@ -20,16 +20,16 @@ const ListItem = ({
       )}
     >
       <div className={cn(
-        "w-8 h-8 rounded-lg flex items-center justify-center transition-colors duration-200",
-        `bg-${list.color}-100`,
-        isActive && `bg-${list.color}-200`
+"w-8 h-8 rounded-lg flex items-center justify-center transition-colors duration-200",
+        `bg-${list.color_c}-100`,
+        isActive && `bg-${list.color_c}-200`
       )}>
         <ApperIcon 
-          name={list.icon} 
+name={list.icon_c} 
           className={cn(
             "w-4 h-4",
-            `text-${list.color}-600`,
-            isActive && `text-${list.color}-700`
+            `text-${list.color_c}-600`,
+            isActive && `text-${list.color_c}-700`
           )}
         />
       </div>
@@ -40,7 +40,7 @@ const ListItem = ({
             "font-medium text-sm truncate transition-colors duration-200",
             isActive ? "text-primary" : "text-slate-700 group-hover:text-slate-900"
           )}>
-            {list.name}
+{list.name_c}
           </span>
           
           {taskCount > 0 && (

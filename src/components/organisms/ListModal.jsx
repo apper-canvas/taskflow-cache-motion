@@ -12,10 +12,10 @@ const ListModal = ({
   onSave, 
   list = null 
 }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    color: "blue",
-    icon: "List",
+const [formData, setFormData] = useState({
+    name_c: "",
+    color_c: "blue",
+    icon_c: "List",
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,11 +43,11 @@ const ListModal = ({
   ];
 
   useEffect(() => {
-    if (list) {
+if (list) {
       setFormData({
-        name: list.name || "",
-        color: list.color || "blue",
-        icon: list.icon || "List",
+        name_c: list.name_c || "",
+        color_c: list.color_c || "blue",
+        icon_c: list.icon_c || "List",
       });
     } else {
       setFormData({
@@ -97,24 +97,21 @@ const ListModal = ({
     
     try {
       const listData = {
-        ...formData,
-        name: formData.name.trim(),
+...formData,
+        name_c: formData.name_c.trim(),
       };
       
       if (list) {
         // Edit mode
-        const updatedList = {
+const updatedList = {
           ...list,
           ...listData,
         };
         await onSave(updatedList);
       } else {
         // Create mode
-        const newList = {
-          id: generateListId(),
+const newList = {
           ...listData,
-          taskCount: 0,
-          createdAt: new Date().toISOString(),
         };
         await onSave(newList);
       }
@@ -167,14 +164,14 @@ const ListModal = ({
 
             {/* Preview */}
             <div className="flex items-center space-x-3 p-4 bg-slate-50 rounded-lg">
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center bg-${formData.color}-100`}>
+<div className={`w-8 h-8 rounded-lg flex items-center justify-center bg-${formData.color_c}-100`}>
                 <ApperIcon 
-                  name={formData.icon} 
-                  className={`w-4 h-4 text-${formData.color}-600`}
+                  name={formData.icon_c} 
+                  className={`w-4 h-4 text-${formData.color_c}-600`}
                 />
               </div>
-              <span className="font-medium text-slate-900">
-                {formData.name || "List Name"}
+<span className="font-medium text-slate-900">
+                {formData.name_c || "List Name"}
               </span>
             </div>
 
@@ -182,8 +179,8 @@ const ListModal = ({
             <div className="space-y-4">
               <Input
                 label="List Name"
-                value={formData.name}
-                onChange={(e) => handleInputChange("name", e.target.value)}
+value={formData.name_c}
+                onChange={(e) => handleInputChange("name_c", e.target.value)}
                 placeholder="Enter list name..."
                 error={errors.name}
                 autoFocus
@@ -193,15 +190,15 @@ const ListModal = ({
                 <Select
                   label="Color"
                   options={colorOptions}
-                  value={formData.color}
-                  onChange={(e) => handleInputChange("color", e.target.value)}
+value={formData.color_c}
+                  onChange={(e) => handleInputChange("color_c", e.target.value)}
                 />
 
                 <Select
                   label="Icon"
                   options={iconOptions}
-                  value={formData.icon}
-                  onChange={(e) => handleInputChange("icon", e.target.value)}
+value={formData.icon_c}
+                  onChange={(e) => handleInputChange("icon_c", e.target.value)}
                 />
               </div>
             </div>
